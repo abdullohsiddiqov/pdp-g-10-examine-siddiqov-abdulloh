@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drag and Drop</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div class="">
-    <h1>Todo</h1>
-    <div class="container">
-      <div class="empty">
-        <div class="fill" draggable="true">Todo #1</div>
+  <div class="container">
+    <div class="">
+      <h1 style="position: sticky; top:0;">
+        Todo
+      </h1>
+      <div class="column">
+        <div class="item" draggable="true">Todo #1</div>
+        <div class="item" draggable="true">Todo #2</div>
+        <div class="item" draggable="true">Todo #3</div>
       </div>
-    
-      <div class="empty">
+    </div>
+    <div class="">
+      <h1 style="position: sticky; top:0;">
+        In Progress
+      </h1>
+      <div class="column">
+        <div class="item" draggable="true">IP #1</div>
+        <div class="item" draggable="true">IP #2</div>
+        <div class="item" draggable="true">IP #3</div>
       </div>
-    
-      <div class="empty">
-      </div>
-      <div class="empty">
-      </div>
-      <div class="empty">
-      </div>
-      <div class="empty">
+    </div>
+    <div class="">
+      <h1 style="position: sticky; top:0;">
+        Done
+      </h1>
+      <div class="column">
+        <div class="item" draggable="true">Done #1</div>
+        <div class="item" draggable="true">Done #2</div>
+        <div class="item" draggable="true">Done #3</div>
       </div>
     </div>
   </div>
-  
+  <script src="main.js"></script>
 </body>
-<script src="./main.js"></script>
 </html>

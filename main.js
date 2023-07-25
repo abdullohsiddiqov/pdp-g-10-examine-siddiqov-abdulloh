@@ -1,42 +1,35 @@
+const columns = document.querySelectorAll(".column");
 
-alert("USTOZ EN YAXWISI WU BOLD BOWQACA QSAM BR QOTB QOLB BR IWLAMAD MAW EN YAXW VARIANT BOLD")
-const fill = document.querySelector('.fill');
-const empties = document.querySelectorAll('.empty');
+document.addEventListener("dragstart", (e) => {
+  e.target.classList.add("dragging");
+});
 
-fill.addEventListener('dragstart', dragStart);
-fill.addEventListener('dragend', dragEnd);
+document.addEventListener("dragend", (e) => {
+  e.target.classList.remove("dragging");
+});
 
-for (const empty of empties) {
-  empty.addEventListener('dragover', dragOver);
-  empty.addEventListener('dragenter', dragEnter);
-  empty.addEventListener('dragleave', dragLeave);
-  empty.addEventListener('drop', dragDrop);
-}
+columns.forEach((item) => {
+  item.addEventListener("dragover", (e) => {
+    const dragging = document.querySelector(".dragging");
+    const applyAfter = getNewPosition(item, e.client);
 
+    if (applyAfter) {
+      applyAfter.insertAdjacentElement("afterend", dragging);
+    } else {
+      item.prepend(dragging);
+    }
+  });
+});
 
-function dragStart() {
-  this.className += ' hold';
-  setTimeout(() => (this.className = 'invisible'), 0);
-}
+function getNewPosition(column, posY) {
+  const cards = column.querySelectorAll(".item:not(.dragging)");
+  let result;
 
-function dragEnd() {
-  this.className = 'fill';
-}
+  for (let refer_card of cards) {
+    const box = refer_card.getBoundingClientRect();
+    const boxCenterY = box.y + box.height / 2;
+    if (posY >= boxCenterY) result = refer_card;
+  }
 
-function dragOver(e) {
-  e.preventDefault();
-}
-
-function dragEnter(e) {
-  e.preventDefault();
-  this.className += ' hovered';
-}
-
-function dragLeave() {
-  this.className = 'empty';
-}
-
-function dragDrop() {
-  this.className = 'empty';
-  this.append(fill);
+  return result;
 }
