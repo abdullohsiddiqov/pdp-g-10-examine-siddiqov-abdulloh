@@ -1,12 +1,42 @@
-const box_1 = document.querySelectorAll('.box-1')
-const containers = document.querySelectorAll('.container')
 
-box_1.forEach(box => {
-  box.addEventListener('dragstart', () => {
-    box.classList.add('active')
-  })
+alert("USTOZ EN YAXWISI WU BOLD BOWQACA QSAM BR QOTB QOLB BR IWLAMAD MAW EN YAXW VARIANT BOLD")
+const fill = document.querySelector('.fill');
+const empties = document.querySelectorAll('.empty');
 
-  box.addEventListener('dragend', () => {
-    box.classList.remove('active')
-  })
-})
+fill.addEventListener('dragstart', dragStart);
+fill.addEventListener('dragend', dragEnd);
+
+for (const empty of empties) {
+  empty.addEventListener('dragover', dragOver);
+  empty.addEventListener('dragenter', dragEnter);
+  empty.addEventListener('dragleave', dragLeave);
+  empty.addEventListener('drop', dragDrop);
+}
+
+
+function dragStart() {
+  this.className += ' hold';
+  setTimeout(() => (this.className = 'invisible'), 0);
+}
+
+function dragEnd() {
+  this.className = 'fill';
+}
+
+function dragOver(e) {
+  e.preventDefault();
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  this.className += ' hovered';
+}
+
+function dragLeave() {
+  this.className = 'empty';
+}
+
+function dragDrop() {
+  this.className = 'empty';
+  this.append(fill);
+}
